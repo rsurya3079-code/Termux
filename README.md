@@ -1,15 +1,19 @@
-# PyHost — Free File Hosting on Netrun
+# PyHost — Full Hosting Platform
+
+## Features
+- Web upload (all file types)
+- Telegram bot hosting
+- Auto-install requirements
+- User logs
+- Admin panel
+- Animated UI
 
 ## Deploy
-1. Push this repo to GitHub.
-2. Go to netrun.io → New Project → Connect GitHub → select repo.
-3. Build command: `pip install -r requirements.txt`
-4. Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
-5. Done. `/data` folder automatically persistent.
+1. Push to GitHub
+2. Connect on Netrun / Wasmer / similar
+3. Set `DATA_DIR=/data` env var (for Netrun)
+4. Deploy
 
-## Admin
-- URL: `/x-admin-7k9p2`
-- Default code: `1298` (change in Settings immediately)
-
-## User
-- Site root `/` → enter access code generated from admin panel.
+## Bot Hosting
+Admin panel → 🤖 Bots → add token from @BotFather → Activate
+Users can now send files to bot and get links!
