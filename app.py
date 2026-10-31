@@ -1,6 +1,6 @@
 import os
 import subprocess
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, redirect
 
 app = Flask(__name__)
 UPLOAD_DIR = 'uploads'
@@ -10,8 +10,8 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 def index():
     return '''
     <!doctype html>
-    <title>Upload Bot File</title>
-    <h1>Upload your bot file or ZIP</h1>
+    <title>फाइल अपलोड</title>
+    <h1>अपनी बॉट फाइल या ZIP अपलोड करें</h1>
     <form action="/upload" method=post enctype=multipart/form-data>
       <input type=file name=file>
       <input type=submit value=Upload>
@@ -29,12 +29,11 @@ def upload_file():
         file_path = os.path.join(UPLOAD_DIR, file.filename)
         file.save(file_path)
         
-        # ऑटोमैटिक पैकेज इंस्टॉलेशन (requirements.txt मानकर)
         requirements_path = os.path.join(UPLOAD_DIR, 'requirements.txt')
         if os.path.exists(requirements_path):
             subprocess.run(['pip', 'install', '-r', requirements_path])
             
-        return "File installed successfully. Please restart your server to run."
+        return "फाइल सफलतापूर्बक इंस्टॉल हो गई है।"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000)
